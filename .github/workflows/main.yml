@@ -1,0 +1,28 @@
+name: EXE Derle (Rust)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Organize src folder
+        run: |
+          if (!(Test-Path "src")) {
+            New-Item -ItemType Directory -Path "src" | Out-Null
+            Get-ChildItem -Filter "*.rs" | Where-Object { $_.Name -ne "build.rs" } | Move-Item -Destination "src"
+          }
+      - name: Build Release EXE
+        run: cargo build --release
+      - name: Rename Artifact
+        run: copy target\release\my_screen_professional.exe "MY Screen 7.1 Professional.exe"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MY-Screen-Windows-Rust
+          path: MY Screen 7.1 Professional.exe
