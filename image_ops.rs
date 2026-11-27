@@ -5,7 +5,7 @@ use image::{ImageFormat, RgbaImage};
 use std::fs;
 use std::path::{Path, PathBuf};
 use std::ptr;
-use windows::Win32::Foundation::{HANDLE, HWND};
+use windows::Win32::Foundation::{GlobalFree, HANDLE, HWND};
 use windows::Win32::Graphics::Gdi::*;
 use windows::Win32::System::DataExchange::*;
 use windows::Win32::System::Memory::*;
