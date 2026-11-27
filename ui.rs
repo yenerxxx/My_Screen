@@ -981,7 +981,8 @@ impl eframe::App for MyScreenRustApp {
                                 .stroke(egui::Stroke::new(1.0, BORDER))
                                 .rounding(10.0)
                                 .show(ui, |ui| {
-                                    ui.set_size(egui::vec2(canvas_w, body_h));
+                                   ui.set_min_size(egui::vec2(canvas_w, body_h));
+ui.set_max_size(egui::vec2(canvas_w, body_h));
                                     let tex_meta = match (&self.preview_tex, &self.bg_img) {
                                         (Some(t), Some(b)) => {
                                             Some((t.id(), b.width() as f32, b.height() as f32))
@@ -1340,7 +1341,8 @@ impl eframe::App for MyScreenRustApp {
                                     .rounding(10.0)
                                     .inner_margin(6.0)
                                     .show(ui, |ui| {
-                                        ui.set_size(egui::vec2(142.0, body_h));
+ui.set_min_size(egui::vec2(142.0, body_h));
+ui.set_max_size(egui::vec2(142.0, body_h));
                                         ui.horizontal(|ui| {
                                             ui.label(
                                                 egui::RichText::new("Geçmiş")
