@@ -636,7 +636,9 @@ impl eframe::App for MyScreenRustApp {
                         }
                         let painter = ui.painter();
                         painter.rect_filled(rect, 0.0, egui::Color32::from_black_alpha(85));
-
+let resp = ui.allocate_rect(rect, egui::Sense::click_and_drag());
+let painter = ui.painter();
+painter.rect_filled(rect, 0.0, egui::Color32::from_black_alpha(85));
                         let resp = ui.allocate_rect(rect, egui::Sense::click_and_drag());
                         if let (Some(hover_pos), Some(raw)) = (resp.hover_pos(), &self.raw_screen) {
                             if self.sel_start.is_none() {
